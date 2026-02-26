@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "negmas-negotiation-app"
+version = "0.1.0"
+description = "A negotiation application using the NegMAS framework."
+authors = ["Your Name <youremail@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+negmas = "^1.0.0"  # Replace with the actual version of the NegMAS framework you are using
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
