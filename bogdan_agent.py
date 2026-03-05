@@ -12,13 +12,13 @@ from negmas import (
 #      - opponent stagnates (flat) -> decrease e slightly 
 #      - opponent gets more stubborn (negative) -> decrease e very slightly (otherwise there's no deal)
 #    Acceptance is ACnext with tweaks:
-#      - safeguard against accepting too low (<90%) of current target
-#      - over the last 5% of time lower acceptance threshold gradually to min 70% of current target
+#      - safeguard against accepting too low (<90%) of current target (prevents accpeting a dumb offer due to an e spike)
+#      - over the last 5% of time lower acceptance floor gradually to 70% of current target from the initial 90%
 #      - in the last 1% accept the best we've seen if above reservation
 #    Proposal follows aspiration curve but with tweaks: 
-#      - anti-exploitation floor -> never target below 95% of best received (Baarslag et al. 2016) so that our time-based nature doesn't come back to bite us and we aim too low
-#      - offer diversity: cycle through offers around the same utility level to trigger concession in reciprocity-based agents (basically anti-micro)
-#      - in the last 3% propose back the best received offer if it meets current target (mirroring to avoid deadlock) 
+#      - anti-exploitation floor (Baarslag et al. 2016): never target below 95% of best received offer so that our time-based nature doesn't come back to bite us and we aim too low
+#      - offer diversity (de Jonge et al. 2022): cycle through offers around the same utility level to trigger concession in reciprocity-based agents (anti-micro)
+#      - deadline mirroring: in the last 3% propose back the best received offer if it meets current target
 #    Example for logic of offer diversity: instead of saying "I want 50 euros" 10 times, you say "How about 50 euros with free shipping?" "How about 51 euros with a sloppy toppy coupon?" "How about 49 euros and I pick the color?"
 class TrendBoulwareNegotiator(SAONegotiator):
 
