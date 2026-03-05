@@ -14,6 +14,7 @@ from negmas.helpers import humanize_time
 from negmas.helpers.strings import unique_name
 from pathlib import Path
 from agent import MiCRONegotiator, MiCRONegotiatorConceder
+from bogdan_agent import TrendBoulwareNegotiator
 import time
 import multiprocessing
 
@@ -47,6 +48,7 @@ if __name__ == "__main__":
     results = cartesian_tournament(
         competitors=[MiCRONegotiator,
                      MiCRONegotiatorConceder,
+                     TrendBoulwareNegotiator,
                      BoulwareTBNegotiator,
                      ConcederTBNegotiator,
                      LinearTBNegotiator,
@@ -60,3 +62,7 @@ if __name__ == "__main__":
     )
     # results.scores_summary[("advantage",)]
     print(f"Done in {humanize_time(time.perf_counter() - tic)}")
+    print("\n=== Score Summary ===")
+    print(results.scores_summary.to_string())
+    print("\n=== Final Scores ===")
+    print(results.final_scores.to_string())
