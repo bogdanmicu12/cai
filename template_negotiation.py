@@ -13,9 +13,12 @@ from negmas.gb.negotiators.timebased import (
 from negmas.preferences import LinearAdditiveUtilityFunction as LUFun
 from negmas.preferences.value_fun import LinearFun, IdentityFun, AffineFun
 from agent import MiCRONegotiator, MiCRONegotiatorConceder
+from prediction_negotiator import PredictionNegotiator
+from SmartNegotiator import SmartAspirationNegotiator
+import matplotlib.pyplot as plt
+from group_69_negotiator import Group69Negotiator
 
-# create negotiation agenda (issues)
-def try_negotiator(buyer_cls, seller_cls, plot=True, n_steps=1000):
+def try_negotiator(buyer_cls, seller_cls, plot=True, n_steps=5000):
     # create negotiation agenda (issues)
     issues = [
         make_issue(name="price", values=10),
@@ -51,10 +54,7 @@ def try_negotiator(buyer_cls, seller_cls, plot=True, n_steps=1000):
     if plot:
         session.plot()
     return session
-
-s1 = try_negotiator(MiCRONegotiator, LinearTBNegotiator)
-# s2 = try_negotiator(MiCRONegotiator, NaiveTitForTatNegotiator)
-# s3 = try_negotiator(MiCRONegotiator, AspirationNegotiator)
-# s4 = try_negotiator(MiCRONegotiator, MiCRONegotiator)
-# s5 = try_negotiator(MiCRONegotiatorConceder, MiCRONegotiator)
-s6 = try_negotiator(LinearTBNegotiator, MiCRONegotiator)
+    
+s1 = try_negotiator(Group69Negotiator, Group69Negotiator)
+s2 = try_negotiator(Group69Negotiator, AspirationNegotiator)
+s3 = try_negotiator(Group69Negotiator, MiCRONegotiator)
